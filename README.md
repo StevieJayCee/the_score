@@ -50,4 +50,62 @@ We will evaluate you on your ability to solve the problem defined in the require
 If you have any questions regarding requirements, do not hesitate to email your contact at theScore for clarification.
 
 ### Installation and running this solution
-... TODO
+
+#### Prerequisites
+
+NPM(v13.x)
+https://www.npmjs.com/get-npm 
+or 
+https://github.com/nvm-sh/nvm#installing-and-updating
+
+Elixir(1.9.4)
+Erlang(OTP 22)
+https://elixir-lang.org/install.html
+
+Postgres
+Latest or latest stable
+Setup `postgres` user with password `postgres`
+Or trust all local connections
+
+
+1. Download this repo
+2. Navigate to api directory
+3. `mix deps.get && mix ecto.reset && mix phx.server`
+4. Navigate to frontend directory
+5. `npm install && npm start`
+
+#### Usage
+
+##### User interface
+Open up http://localhost:3000/ in a browser for the frontend app
+
+
+##### API interface:
+Open up http://localhost:4000/graphiql in a browser for the API.
+
+
+example usage:
+
+Get select fields for all rushing records:
+```
+{
+  rushing{
+    player
+    totalYards
+    touchdowns
+    longest
+  }
+}
+```
+
+Combining sort and filter
+```
+{
+  rushing(filter: {player: "and"}, sort: {touchdowns: "desc", totalYards: "desc"}){
+    player
+    totalYards
+    touchdowns
+    longest
+  }
+}
+```
